@@ -19,7 +19,8 @@ export const tooltips = [
     {
         name: 'Pass If No Alternative Route',
         description:
-        '< placeholder text until I can describe this >'
+        'Deprefer invalid announcements so that an alternate route for the same prefix with Unknown or Valid status can be used '+
+        'instead.'
     },
     {
       name: 'ROV',
