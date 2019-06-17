@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { AsnPolicyStatsRequest } from '../asn-policy-stats-request';
 import { ForecastTableService } from '../forecast-table.service';
-import { tooltips } from 'src/app/policy-descriptions/policy-description-list';
 import * as $ from 'jquery';
 
 //const bootstrap = require('bootstrap');
@@ -19,9 +18,7 @@ export class ForecastFormComponent implements OnInit {
   public req = new AsnPolicyStatsRequest('13335', 'all');
   public objKeys = Object.keys;
   tableContents = '';
-  public tooltipText: any = [];
-  tooltips = tooltips;
-
+  
   constructor(private forecastTableService: ForecastTableService) { }
   
   ngOnInit() {
@@ -33,12 +30,9 @@ export class ForecastFormComponent implements OnInit {
       // should probably find a cleaner way of doing this...
       this.policies = this.tableResponse[Object.keys(this.tableResponse)[0]];
 
-      for (let entry in this.tooltips) {
-        console.log(this.tooltips[entry]);
-        this.tooltipText.push(this.tooltips[entry].description);
-      }
-
-      console.log(this.tooltipText);
+      /* for (let entry in this.policies) {
+        console.log(this.policies[entry]);
+      } */
 
       this.parentIfStubAS = this.policies.parent_if_stub_as;
       delete this.policies.parent_if_stub_as;
