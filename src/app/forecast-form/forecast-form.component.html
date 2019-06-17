@@ -28,10 +28,10 @@
          <th class="forecast-red">Hijacked but not Blocked</th>
        </tr>
        </thead>
-       <tr *ngFor="let policy of objKeys(policies)">
+       <tr *ngFor="let policy of objKeys(policies); index as i">
          <td><a routerLink="/policy-descriptions">
            <img class="details-question-mark" 
-                    title="Click for detailed policy descriptions"
+                    title={{policies[policy].description}}
                     data-toggle="tooltip"
                     src="assets/icon-round-question-mark.svg" 
                     type="image/svg+xml"

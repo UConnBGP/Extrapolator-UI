@@ -15,9 +15,10 @@ export class ForecastFormComponent implements OnInit {
   public tableResponse: any = {};
   public policies: any = {};
   public parentIfStubAS: string = '';
-  public req = new AsnPolicyStatsRequest('13796', 'all');
+  public req = new AsnPolicyStatsRequest('13335', 'all');
   public objKeys = Object.keys;
   tableContents = '';
+  
   constructor(private forecastTableService: ForecastTableService) { }
   
   ngOnInit() {
@@ -28,6 +29,11 @@ export class ForecastFormComponent implements OnInit {
   writeTable() {
       // should probably find a cleaner way of doing this...
       this.policies = this.tableResponse[Object.keys(this.tableResponse)[0]];
+
+      /* for (let entry in this.policies) {
+        console.log(this.policies[entry]);
+      } */
+
       this.parentIfStubAS = this.policies.parent_if_stub_as;
       delete this.policies.parent_if_stub_as;
   }
@@ -37,7 +43,8 @@ export class ForecastFormComponent implements OnInit {
   loadTable() {
       this.forecastTableService.getForecastTable(this.req.asn)
         .subscribe((data) => {
-    	  this.tableResponse = data;
+        this.tableResponse = data;
+        console.log(data);
           this.writeTable();});
   }
   
