@@ -11,7 +11,7 @@ export class ForecastTableService {
   /** Return an Observable of response body. 
     */
   getForecastTable(asn) {
-    var result = this.http.get('https://bgpforecast.uconn.edu/asn_policy_stats/' + asn + '/all/');
+    var result = this.http.get('/asn_policy_stats/' + asn + '/all/');
     console.log(result);
 
     return result;

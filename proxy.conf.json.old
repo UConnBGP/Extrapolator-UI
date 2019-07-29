@@ -1,6 +1,6 @@
 {
   "/asn_policy_stats/": {
-    "target": "http://localhost:5000", 
+    "target": "http://137.99.51.48:4200", 
     "secure": false,
     "logLevel": "debug"
   }

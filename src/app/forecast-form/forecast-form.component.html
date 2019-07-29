@@ -11,10 +11,10 @@
     <button type="submit" class="btn btn-success"
             [disabled]="!forecastForm.form.valid">Submit</button>
   </form>
-  <div *ngIf="parentIfStubAS.length != 0" id="parent-mapping" style="margin-top:15px;">This AS is a stub. Showing equivalent forecast
+  <div *ngIf="parentIfStubAS" id="parent-mapping" style="margin-top:15px;">This AS is a stub. Showing equivalent forecast
   for AS{{parentIfStubAS}}.</div>
   <div *ngIf="objKeys(policies).length != 0">These are preliminary results only, and they
-  may not be accurate.<br />Showing results for March 29,
+  may not be accurate.<br />Showing results for July 9,
   2019. These statistics are for prefixes with ROAs only.</div>
   <div id="table-placeholder" style="margin-top:15px">
     <table *ngIf="objKeys(policies).length != 0" class="table">
@@ -28,7 +28,7 @@
          <th class="forecast-red">Hijacked but not Blocked</th>
        </tr>
        </thead>
-       <tr *ngFor="let policy of objKeys(policies); index as i">
+       <tr *ngFor="let policy of objKeys(policies)">
          <td><a routerLink="/policy-descriptions">
            <img class="details-question-mark" 
                     title={{policies[policy].description}}
@@ -39,12 +39,11 @@
          <td>
             
            <strong>{{policy}}</strong></td>
-         <td>
-            {{policies[policy].neitherBlockedNorHijacked}}</td>
-         <td class="forecast-green"><strong>{{policies[policy].hijackedAndBlocked}}</strong></td>
-         <td class="forecast-red"><strong>{{policies[policy].notHijackedButBlocked}}</strong></td>
-         <td class="forecast-red"><strong>{{policies[policy].hijackedButNotBlocked}}</strong></td>
-       </tr>
+         <td>{{policies[policy][req.asn].not_blocked_not_hijacked}}</td>
+         <td class="forecast-green"><strong>{{policies[policy][req.asn].blocked_hijacked}}</strong></td>
+         <td class="forecast-red"><strong>{{policies[policy][req.asn].blocked_not_hijacked}}</strong></td>
+         <td class="forecast-red"><strong>{{policies[policy][req.asn].not_blocked_hijacked}}</strong></td>
+	</tr>
      </table>
   </div>
 </div>

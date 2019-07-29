@@ -14,7 +14,7 @@ import * as $ from 'jquery';
 export class ForecastFormComponent implements OnInit {
   public tableResponse: any = {};
   public policies: any = {};
-  public parentIfStubAS: string = '';
+  public parentIfStubAS: boolean = false;
   public req = new AsnPolicyStatsRequest('13335', 'all');
   public objKeys = Object.keys;
   tableContents = '';
@@ -28,13 +28,13 @@ export class ForecastFormComponent implements OnInit {
     */
   writeTable() {
       // should probably find a cleaner way of doing this...
-      this.policies = this.tableResponse[Object.keys(this.tableResponse)[0]];
+      this.policies = this.tableResponse;
+	
+      for (let entry in this.policies) {
+        console.log(this.policies[entry][this.req.asn].not_hijacked_not_blocked);
+      }
 
-      /* for (let entry in this.policies) {
-        console.log(this.policies[entry]);
-      } */
-
-      this.parentIfStubAS = this.policies.parent_if_stub_as;
+      this.parentIfStubAS = this.policies['invalid_asn_policy'][this.req.asn]['parent_asn'] != this.req.asn;
       delete this.policies.parent_if_stub_as;
   }
 
