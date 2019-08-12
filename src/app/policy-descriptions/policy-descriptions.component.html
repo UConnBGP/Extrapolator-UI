@@ -2,18 +2,6 @@
 <h3>Policy Descriptions</h3>
 <p></p>
 
-<h4 id="ROV">ROV</h4>
-<p>Block route announcements using standard Resource Certification (<a href="https://tools.ietf.org/html/rfc6487">RPKI</a>) 
- Route Origin Validation (<a
- href="https://www.ripe.net/manage-ips-and-asns/resource-management/certification/bgp-origin-validation">ROV</a>)
- as defined in <a href="https://tools.ietf.org/html/rfc6811">RFC 6811</a>.</p>
-
-<h4 id="SimpleTimeHeuristic">Simple Time Heuristic</h4>
-<p>If a route announcement is older than a specified time interval, then it is
-whitelisted regardless of its ROV validity. Since origin hijacks tend to be
-short-lived, a long-lived, invalid announcement is more likely to be a
-misconfiguration than an attack.</p>
-
 <h4 id="EnforceInvalidASNOnly">Enforce Invalid ASN Only</h4>
 <p>Block route announcements <i>only</i> when the originating AS is in conflict
 with a Route Origin Authorization (<a href="https://tools.ietf.org/html/rfc6482">ROA</a>). 
@@ -24,10 +12,26 @@ Announcements containing prefixes exceeding the maximum length authorized by a R
 the maximum length authorized by a ROA. Announcements originating from an AS
 that is not authorized to do so are <i>allowed</i>.</p>
 
+<h4 id="ROV">ROV</h4>
+<p>Block route announcements using standard Resource Certification (<a href="https://tools.ietf.org/html/rfc6487">RPKI</a>) 
+ Route Origin Validation (<a
+ href="https://www.ripe.net/manage-ips-and-asns/resource-management/certification/bgp-origin-validation">ROV</a>)
+ as defined in <a href="https://tools.ietf.org/html/rfc6811">RFC 6811</a>.</p>
+
+<!-- Policies Not Implemented
+
+<h4 id="SimpleTimeHeuristic">Simple Time Heuristic</h4>
+<p>If a route announcement is older than a specified time interval, then it is
+whitelisted regardless of its ROV validity. Since origin hijacks tend to be
+short-lived, a long-lived, invalid announcement is more likely to be a
+misconfiguration than an attack.</p>
+
 <h4 id="Depref">Drop if Still Routable (DISR)</h4>
 <p><a
 href="https://tools.ietf.org/html/draft-sriram-sidrops-drop-invalid-policy-02">Not
 implemented yet.</a></p>
+
+-->
 
 <!--<h4 id="5_Version1_40">5. Version-1</h4>
 
